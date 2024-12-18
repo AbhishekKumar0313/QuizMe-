@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+  <link rel="stylesheet" href="{% static 'QuizMe/question.css' %}" />
+  <body>
+    {% include "header.html" %}
+    <h2>Question {{ question_number }}: {{ question.question_text }}</h2>
+    <form
+      method="POST"
+      action="{% url 'submit_answer' session.id question_number %}"
+    >
+      {% csrf_token %}
+      <div class="checkbox-group">
+        <label>
+          <input
+            class="single-checkbox"
+            type="checkbox"
+            name="answer"
+            value="1"
+          />{{ question.first_choice }}
+        </label>
+        <label>
+          <input
+            class="single-checkbox"
+            type="checkbox"
+            name="answer"
+            value="2"
+          />{{ question.second_choice }}
+        </label>
+        <label>
+          <input
+            class="single-checkbox"
+            type="checkbox"
+            name="answer"
+            value="3"
+          />{{ question.third_choice }}
+        </label>
+        <label>
+          <input
+            class="single-checkbox"
+            type="checkbox"
+            name="answer"
+            value="4"
+          />{{ question.fourth_choice }}
+        </label>
+      </div>
+      <button type="submit" style="margin-top: 20px">Submit Answer</button>
+    </form>
+  </body>
+
+  <script>
+    const checkboxes = document.querySelectorAll(".single-checkbox");
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          checkboxes.forEach((other) => {
+            if (other !== checkbox) {
+              other.checked = false;
+            }
+          });
+        }
+      });
+    });
+  </script>
+  {% include "footer.html" %}
+</html>

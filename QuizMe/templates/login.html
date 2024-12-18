@@ -1,0 +1,49 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'QuizMe/login.css' %}" />
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <div class="container">
+      <h2>Login</h2>
+
+      {% if messages %} {% for message in messages %}
+      <p style="color: #d91656; text-align: center; font-size: 15px">
+        {{ message }}
+      </p>
+      {% endfor %} {% endif %}
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <br />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+
+        <label for="password">Password</label>
+        <br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    
+  {% include 'footer.html' %}
+    </body>
+
+</html>

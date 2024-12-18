@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'QuizMe/result.css' %}">
+  </head>
+  <body>
+    {% include "header.html" %}
+    <div class="content">
+      <h2>Your Quiz Results</h2>
+      <p>Total Correct: {{ session.correct }}</p>
+      <p>Total Incorrect: {{ session.incorrect }}</p>
+      <p>Total Answered: {{ session.answered }}</p>
+      <a href="{% url 'homepage' %}"><button>Go to Home</button></a>
+    </div>
+    {% include "footer.html" %}
+  </body>
+
+</html>

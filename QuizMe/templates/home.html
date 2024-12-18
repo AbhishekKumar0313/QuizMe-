@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'QuizMe/home.css' %}" />
+  </head>
+  <body>
+    {% include 'header.html' %} 
+    <div class="content">
+      <div class="button-container">
+        <a href="{% url 'start'%}" class="btn btn-start">Start Quiz</a>
+        <a href="{%url 'logout'%}" class="btn btn-logout">Logout</a>
+      </div>
+    </div>
+
+    {% include 'footer.html' %}
+  </body>
+</html>
